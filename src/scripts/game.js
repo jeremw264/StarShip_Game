@@ -9,6 +9,7 @@ class Game {
         this.saucers = []; // Array Object Saucer
         this.shoots = [];
         this.score = 0;
+        this.lifes = 3
         this.animationRequest = null;
         this.fleetsSaucers = 0;
         this.autoFleets = null;
@@ -16,11 +17,18 @@ class Game {
 
     set Score(score) {
         this.score = score;
-        document.getElementById("score").innerHTML = this.score;
     }
 
     get Score() {
         return this.score;
+    }
+
+    set Lifes(lifes){
+        this.lifes = lifes
+    }
+
+    get Lifes(){
+        return this.lifes
     }
 
     moveAndDraw() {
@@ -28,10 +36,19 @@ class Game {
 
         context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+        context.font = '18px roboto';
+        context.fillStyle = '#FFFFFF'
+        context.fillText(`Score: ${this.Score}`,this.canvas.width-125,25)
+        context.fillText(`Vies: ${this.Lifes}`,this.canvas.width-125,50)
+
         if (this.saucers) {
             let temp = this.saucers;
             this.saucers = this.saucers.filter((saucer) => saucer.x > 0);
             this.Score = this.Score - (temp.length - this.saucers.length) * 1000;
+            if (temp.length != this.saucers.length) {
+                this.Lifes -= 1
+            }
+            
         }
 
         if (this.shoots.length > 0) {
@@ -43,6 +60,10 @@ class Game {
                     this.shoots = this.shoots.filter((elt) => elt != shoot);
                 }
             });
+        }
+
+        if (this.Lifes < 1) {
+            this.reset()
         }
 
         // Déplacement et affichage
@@ -87,10 +108,21 @@ class Game {
         if (this.fleetsSaucers === 0) {
             this.fleetsSaucers = 1;
             this.autoFleets = window.setInterval(() => this.addSaucer(), 750);
+            document.getElementById('flotteSoucoupes').innerHTML = 'Stop'
         } else if (this.fleetsSaucers === 1) {
             this.fleetsSaucers = 0;
             window.clearInterval(this.autoFleets);
+            document.getElementById('flotteSoucoupes').innerHTML = 'Play'
         }
+    }
+
+    reset(){
+        this.fleetsSaucers = 1
+        this.startAndStopsaucerFleets()
+        this.Score=0
+        this.Lifes = 3
+        this.saucers = []
+        this.shoots = []
     }
 
     keyDownActionHandler(event) {

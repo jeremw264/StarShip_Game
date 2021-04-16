@@ -4,6 +4,7 @@ import Mobile from "./mobile.js";
 import Shooter from "./shooter.js";
 import StarShip from "./starship.js";
 
+
 // mise en place de l'action des clics sur les boutons + les gestionnaires du clavier pour contrôler le starship
 const init = () => {
 
