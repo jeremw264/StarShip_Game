@@ -5,7 +5,7 @@ import MoveState from "./moveState";
 export default class StarShip extends Mobile {
     constructor(x, y) {
         super(x, y, 0, 8, imgStarShip);
-        this.moving = MoveState.state['NONE'];
+        this.moving = MoveState.state["NONE"];
     }
 
     get up() {
