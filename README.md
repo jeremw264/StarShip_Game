@@ -6,5 +6,5 @@ Jeu vidéo simple dans lequel le joueur contrôle à l'aide du clavier le dépla
 
 ![alt text](https://www.fil.univ-lille1.fr/~routier/enseignement/licence/js/tdtp/images/starship.png)
 
-### Source du projet
+### Inspiration du projet
 https://www.fil.univ-lille1.fr/portail/archive19-20/~routier/enseignement/licence/js/tdtp/starship.html
