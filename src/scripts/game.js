@@ -1,6 +1,7 @@
 import Saucer from "./saucer";
 import Shooter from "./shooter";
 import StarShip from "./starship";
+import imgSrc from "../assets/images/heart.png"
 
 class Game {
     constructor() {
@@ -36,7 +37,6 @@ class Game {
     start() {
         if (this.playState < 1) {
             this.playState = 1;
-            this.moveAndDraw();
             this.autoFleets = window.setInterval(() => this.addSaucer(), 750);
             document.getElementById("flotteSoucoupes").innerHTML = "Stop";
         } else {
@@ -58,7 +58,15 @@ class Game {
         context.font = "18px roboto";
         context.fillStyle = "#FFFFFF";
         context.fillText(`Score: ${this.Score}`, this.canvas.width - 125, 25);
-        context.fillText(`Vies: ${this.Lifes}`, this.canvas.width - 125, 50);
+        context.fillText(`Vies:`, this.canvas.width - 125, 50);
+        /************************************************************/
+        for (let i = 0; i < this.Lifes ; i++) {
+
+            const image = new Image();
+            image.src = imgSrc;
+            context.drawImage(image,this.canvas.width - 80 + (image.width + 1)*i,37);
+        }
+        /************************************************************/
 
         if (this.saucers) {
             let temp = this.saucers;

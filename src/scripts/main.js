@@ -7,6 +7,7 @@ const init = () => {
 
     window.addEventListener("keydown", theGame.keyDownActionHandler.bind(theGame));
     window.addEventListener("keyup", theGame.keyUpActionHandler.bind(theGame));
+    theGame.moveAndDraw()
 
     fleetsSaucers.addEventListener("click", () => {
         theGame.start(theGame);
